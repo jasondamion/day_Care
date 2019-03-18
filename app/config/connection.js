@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 require('dotenv').config();
 
 // Creates mySQL connection using Sequelize
-var sequelize = new Sequelize("dayCare_db", "root", process.env.mysqlPass, {
+var sequelizesql = new Sequelize("dayCare_db", "root", process.env.mysqlPass, {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
@@ -16,7 +16,7 @@ var sequelize = new Sequelize("dayCare_db", "root", process.env.mysqlPass, {
 });
 
 // Exports the connection for other files to use
-module.exports = sequelize;
+module.exports = sequelizesql;
 
 
 

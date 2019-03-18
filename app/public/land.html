@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="main.css">
   <script src="modal.js" defer></script>
 
+
 </head>
 
 <body>
@@ -43,9 +44,9 @@
          <div class = "col-12 flex">
 
            <h1 id = "username_text">Username: </h1>
-
-           <input type="text" id="username" placeholder="Username">
-
+          <form>
+           <input type="text" id="username" name="username" placeholder="Username">
+         </form>
          </div>
         </div>
 
@@ -55,7 +56,7 @@
         <div class = "row">
           <div class = "col-12 flex">
            <h1 id = "password_text">Password: </h1>
-           <input type="text" id="password" placeholder="Password">
+           <input type="password" id="password" placeholder="Password">
           </div>
       </div>
 
@@ -97,32 +98,11 @@
           <input type="text" id="uidVal">
           <button type="button" id="reUID">Retrieve</button>
         </form>
-
-        <form>
-          <h2>Enter the</h2>
-          <h2>Email:</h2>
-          <input type="text" id="emailVal">
-          <button type="button" id="reEmail">Retrieve</button>
-        </form>
       </div>
     </div>
 
     <br>
     <br>
-
-    <div class="row">
-
-      <div class="col-12 flex">
-
-        <form>
-          <h2>Enter the</h2>
-          <h2>Phone Number:</h2>
-          <input type="text" id="phoneVal">
-          <button type="button" id="rePhone">Retrieve</button>
-        </form>
-
-      </div>
-    </div>
 
     <br>
     <br>
@@ -171,9 +151,9 @@
       <div class="modal-content">
         <span class="close1">&times;</span>
         <h1>Teacher Schedule</h1>
-        <img src="#" alt="Teacher Schedule">
+        <img src="EveryThreeMonth.jpg" alt="Teacher Schedule">
         <h1>Class Schedule</h1>
-        <img src="#" alt="Class Schedule">
+        <img src="EverydaySchedule.jpg" alt="Class Schedule">
       </div>
 
     </div>
@@ -193,11 +173,23 @@
 
       <!-- Modal content -->
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close3">&times;</span>
         <h1 id = "childName">Child Name: </h1>
         <h3 id = "childEmail">Child Email Address</h3>
         <h3 id = "childPhone">Child Phone Number</h3>
+        <br>
+        <br>
+        <button type="button" id="clock-in">Clock In</button>
+        <input type="text" id="guardianIn" placeholder="Enter the Guardian Name">
+        <br>
+        <br>
+        <button type="button" id="clock-out">Clock Out</button>
+        <input type="text" id="guardianOut" placeholder="Enter the Guardian Name">
+        <br>
+        <br>
+        <button type="button" id="deleteChild">Delete?</button>
       </div>
+
 
     </div>
 

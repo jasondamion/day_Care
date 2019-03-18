@@ -44,7 +44,7 @@ window.onclick = function(event) {
   }
 }
 
-console.log("Working Right Now before the login function")
+console.log("Working before the login function")
 //View The Users
 
 // Get the modal
@@ -68,17 +68,48 @@ window.onclick = function(event) {
   }
 }
 
+//Retrieve Users By Name Modal
+
+// Get the modal
+var retNModal = document.getElementById('retNModal');
+// Get the button that opens the modal
+var reUID = document.getElementById("reUID");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close3")[0];
+// When the user clicks on the button, open the modal 
+reUID.onclick = function() {
+  retNModal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  retNModal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == retNModal) {
+    retNModal.style.display = "none";
+  }
+}
+
 console.log("Working right before variables functions")
 
 // Variables for manipulating the DOMs of the login page
-var username = $('#username').val()
-var password = $("#password").val()
+// var username = document.getElementById("username").value;
+var username;
+console.log("Before click function name "+username);
+var password;
 var login = $("#login")
-var container = $("#container")
+var container;
+var container1;
 
 console.log("After variables working")
 
-$(login).click(function() {
+$(login).click(function(event) {
+  event.preventDefault();
+  username = $('#username').val();
+  password = $("#password").val();
+  container = $(".container");
+  container1 = $(".container1");
     console.log("Click function works!")
     console.log(username)
 if (username == "mdvclifton"){
@@ -86,9 +117,9 @@ if (username == "mdvclifton"){
   if (password == "Jesus"){
       console.log(password)
 // Get the container holding the admin page
-var container1 = document.getElementById('container1');
-   container1.style.display = "block";
-    container.style.display = "none"
+
+   $(container1).css("display", "block");
+    $(container).css("display", "none")
 }
 else{
     alert("Wrong password")
@@ -97,7 +128,7 @@ else{
 else {
 alert("Username is wrong")
 }
-})
+});
 
 
 //The username is not coming up and the firebase admin functions arent working.
