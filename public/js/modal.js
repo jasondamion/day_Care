@@ -104,7 +104,7 @@ var container1;
 
 console.log("After variables working")
 
-$(login).click(function(event) {
+login.click(function(event) {
   event.preventDefault();
   username = $('#username').val();
   password = $("#password").val();
@@ -112,23 +112,17 @@ $(login).click(function(event) {
   container1 = $(".container1");
     console.log("Click function works!")
     console.log(username)
-if (username == "mdvclifton"){
-    console.log(username)
-  if (password == "Jesus"){
-      console.log(password)
+if (username == "mdvclifton" && password === "Jesus"){
+  
 // Get the container holding the admin page
 
    $(container1).css("display", "block");
     $(container).css("display", "none")
 }
-else{
-    alert("Wrong password")
-}
-}
 else {
-alert("Username is wrong")
+  console.log("Error logging in");
 }
 });
 
 
-//The username is not coming up and the firebase admin functions arent working.
+//The username is not coming up and the firebase admin functions arent working

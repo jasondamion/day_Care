@@ -15,13 +15,14 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/land.html"));
+    res.render("index");
+    // res.render(path.join(__dirname, "index"))
   });
 
   // add route loads the add.html page, where users can enter new books to the db
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/land.html"));
-  });
+  // app.get("*", function(req, res) {
+  //   res.render(path.join(__dirname, "index"));
+  // });
 
 
 

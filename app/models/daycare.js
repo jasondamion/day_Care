@@ -1,162 +1,100 @@
-//Getting firebase started
-var admin = require("firebase-admin");
-require('dotenv').config();
-
-admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId: x,
-    clientEmail: x,
-    privateKey: x
-  }),
-  databaseURL: "https://daycare-46f7a.firebaseio.com",
-});
-
 console.log("Successfully linked to the daycare model file");
+
+//Getting firebase started
+var dotenv = require('dotenv').config();
+
 //DEPENDENCIES//
 var sequelize = require("../config/connection.js");
-var moment = require('moment');
-moment().format();
+var Handlebars = require('handlebars');
 //DEPENDENCIES//
 
-
-//VARIABLES//
-
-//VARIABLES FOR ADD MODAL
-var uidAddModal;
-var emailAddModal;
-var phoneAddModal;
-var submitAddModal = document.getElementById("submitAddModal")
-//VARIABLES FOR VIEWING CHILDREN MODAL
-var kidsViewingPoint = document.getElementById("addKidsHere")
-var viewChildrenButton = document.getElementById("vacbutton")
-//VARIABLES FOR RETRIEVING A CHILD
-var uidVal;
-var reUID = document.getElementById("reUID")
-var childName;
-var childEmail;
-var childPhone;
-//VARIABLES FOR DELETING A CHILD IN RETRIEVE MODAL//
-var deleteChild = document.getElementById("deleteChild")
-var dchildName;
-//VARIABLES FOR THE CLOCK IN FUNCTION//
-var clock_in = document.getElementById("clock-in")
-var clock_out = document.getElementById("clock-out")
-var guardian;
-
-//Function for clocking them in and out
-function clock(check_in, CchildName) {
-  if (check_in === "in" || check_in === "In") {
-    var time = moment();
-    guardian = document.getElementById("guardianIn").value
-    sequelize.query("INSERT INTO clock (date_today,child_Name,guardian_Name,clock_in) VALUES('" + time + "','" + CchildName + "','" + guardian + "','" + check_in + "')'", function(err){
-    if (err){
-      console.log("An error occured trying to clock child in");
-     } 
-     else{
-     console.log('success, database updated');
-    } 
-  });
-  }
-  else {
-    var time = moment();
-    guardian = document.getElementById("guardianOut")
-    sequelize.query("INSERT INTO clock (date_today,child_Name,guardian_Name,clock_out) VALUES('" + time + "','" + CchildName + "','" + guardian + "','" + check_in + "')'", function(err){
-      if (err){
-        console.log("an error ocurred trying to clock child out")
-       } 
-       else{
-        console.log('success, database updated');
-       } 
-      });
-    }
-}
-
-//Add user function //DONE
-__________________________________________________________________
-alert("Before the submit button")
-
-submitAddModal.onclick(function () {
-  alert("Submit button clicked");
-  uidAddModal = document.getElementById("uidValAddModal").value
-  emailAddModal = document.getElementById("emailValAddModal").value
-  phoneAddModal = document.getElementById("phoneValAddModal").value
-  admin.auth().createUser({
-    uid: uidAddModal,
-    email: emailAddModal,
-    phoneNumber: phoneAddModal
-  })
-    .then(function (userRecord) {
-      // See the UserRecord reference doc for the contents of userRecord.
-      console.log("Successfully created new user:", userRecord.uid);
-    })
-    .catch(function (error) {
-      console.log("Error creating new user:", error);
-    });
-});
+//Gets all the dotenv keys
+// const result = dotenv;
+ 
+// if (result.error) {
+//   throw result.error
+// }
+ 
+// console.log(result.parsed)
 
 //View Children Button// DONE
 
-viewChildrenButton.onclick(function () {
-  alert("View Children button clicked");
+//Add child
+function add(){
+var childName = "Jason"
+//document.getElementById("nameValAddModal")
+var guardianName = "Muriel Page"
+//document.getElementById("guardianValAddModal")
+var email = "jasonnelson11@gmail.com"
+//document.getElementById("emailValAddModal")
+var phone = 3477929311
+//document.getElementById("phoneValAddModal")
+sequelize.query("INSERT INTO children(date_added,child_Name,guardian_Name,email,phone) VALUES(curdate(),?,?,?,?)",{replacements: [childName,guardianName,email,phone]},{type: sequelize.QueryTypes.INSERT})
+.then(result =>{
+  console.log("Child Added")
+})
+}
+
   //List all Users
-  function listAllUsers(nextPageToken) {
-    // List batch of users, 1000 at a time.
-    admin.auth().listUsers(1000, nextPageToken)
-      .then(function (listUsersResult) {
-        listUsersResult.users.forEach(function (userRecord) {
-          console.log("user", userRecord.toJSON());
-          $(kidsViewingPoint).append(userRecord.toJSON())
-        });
-        if (listUsersResult.pageToken) {
-          // List next batch of users.
-          listAllUsers(listUsersResult.pageToken)
-        }
-      })
-      .catch(function (error) {
-        console.log("Error listing users:", error);
-      });
+function list() {
+  sequelize.query("Select * FROM children",{type: sequelize.QueryTypes.SELECT})
+  .then(children =>{
+    console.log("List of children: \n"+JSON.stringify(children))
+    // var myinfo = "<h1>{{Name}}</h1> <p>{{Date_Added}}</p> <p>{{Guardian_Name}}</p> <p>{{Email}}</p> <p>{{Phone}}</p>"
+    // var template = Handlebars.compile(myinfo);
+    //     for (var i = 0; i <= children.length;i++){
+    // var Name = children[i].child_Name
+    // var Date_Added = children[i].date_added
+    // var Guardian_Name = children[i].guardian_Name
+    // var Email = children[i].email
+    // var Phone = children[i].phone
+    // var data = {Name:Name, Date_Added:Date_Added, Guardian_Name:Guardian_Name, Email:Email, Phone:Phone}
+    
+    })
   }
-});
+  function listRecords(){
+  sequelize.query("Select * FROM timesheet",{type: sequelize.QueryTypes.SELECT})
+.then(records =>{
+  console.log("The Records: \n"+ JSON.stringify(records))
+})
+  }
+
+
+
 
 //Retrieve Users by Name
-
-reUID.onclick(function () {
-    uidVal = document.getElementById("uidVal").value
-    admin.auth().getUser(uidVal)
-      .then(function (userRecord) {
-        // See the UserRecord reference doc for the contents of userRecord.
-        console.log("Successfully fetched user data:", userRecord.toJSON());
-        childName = document.getElementById("childName").value(userRecord.uid)
-        childEmail = document.getElementById("childEmail").value(userRecord.email);
-        childPhone = document.getElementById("childPhone").value(userRecord.phoneNumber);
-      })
-      .catch(function (error) {
-        console.log("Error fetching user data:", error);
-      });
-  });
+function retrieve() {
+var childName = "Jason"
+sequelize.query("SELECT child_Name, guardian_Name,email,phone FROM children WHERE child_Name = ?",{replacements: [childName]},{type: sequelize.QueryTypes.RAW})
+.then(result =>{
+  console.log("Child Info \n" + JSON.stringify(result[0]))
+})
+}
 
 //Delete user function
-
-deleteChild.onclick(function() {
-  dchildName = document.getElementById("uidVal").value;
-  admin.auth().deleteUser(dchildName)
-    .then(function () {
-      console.log("Successfully deleted user");
-    })
-    .catch(function (error) {
-      console.log("Error deleting user:", error);
-    });
+function deleted() {
+var childName = document.getElementById("childName")
+sequelize.query("DELETE FROM children WHERE child_Name = '?'", {replacements: {childName}},{type: sequelize.QueryTypes.DELETE})
+.then(child =>{
+  console.log("Child Deleted")
 })
-
+}
 //Clock in and out click functions
-__________________________________________________________________
-clock_in.onclick(function () {
-  guardian = document.getElementById("guardianIn").value
-  kidName = document.getElementById("uidVal").value
-clock("In",kidName);
+
+// // Clock in
+function clockIn() {
+var childName = document.getElementById("childName")
+var guardianName = document.getElementById("guardianIn")
+sequelize.query("INSERT INTO timesheet(date_today,child_Name,guardian_Name,clock_in) VALUES(curdate(),?,?,curTime())",{replacements: [childName,guardianName]},{type: sequelize.QueryTypes.INSERT})
+.then(result =>{
+  console.log("Done updating timesheet")
 })
-$(clock_out).click(function () {
-  guardian = document.getElementById("guardianOut").value
-  kidName = document.getElementById("uidVal").value
-clock("Out", kidName);
+}
+//Clock out
+function clockOut(){
+var childName = document.getElementById("childName")
+sequelize.query("UPDATE timesheet SET clock_out = curtime() WHERE child_Name = ?",{replacements: [childName]},{type: sequelize.QueryTypes.UPDATE})
+.then(result =>{
+  console.log("Done updating timesheet")
 })
+}

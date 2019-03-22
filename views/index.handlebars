@@ -1,0 +1,112 @@
+<body>
+  <div class = "container">
+      <div class="row bg-white">
+
+          <div class="col-3">
+            <img src="../../public/assets/Logo.png" width="120%" height="80%">
+          </div>
+          <div class="col-6"></div>
+          <div class="col-3">
+            <img src="../../public/assets/daycare pic.jpg" width="80%" height="80%" id="dayPic">
+          </div>
+
+        </div>
+
+        <br>
+        <br>
+
+        <div class = "row">
+
+         <div class = "col-12 flex">
+
+           <h1 id = "username_text">Username: </h1>
+          <form>
+           <input type="text" id="username" name="username" placeholder="Username">
+         </form>
+         </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class = "row">
+          <div class = "col-12 flex">
+           <h1 id = "password_text">Password: </h1>
+           <input type="password" id="password" placeholder="Password">
+          </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class = "row">
+          <div class = "col-12 flex">
+           <button type="button" id="login">Login</button>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="container1">
+
+    <div class="row bg-white">
+
+      <div class="col-3">
+        <img src="../../public/assets/Logo.png" width="120%" height="80%">
+      </div>
+      <div class="col-6"></div>
+      <div class="col-3">
+        <img src="../../public/assets/daycare pic.jpg" width="80%" height="80%" id="dayPic">
+      </div>
+
+    </div>
+
+    <br>
+
+
+    <div class="row">
+
+      <div class="col-12 flex" id="firstr">
+
+        <form>
+          <h2>Enter the</h2>
+          <h2>Name:</h2>
+          <input type="text" id="nameVal">
+          <button type="button" id="reUID">Retrieve</button>
+        </form>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <div class="row">
+
+      <div class="col-12 flex">
+
+        <button type="button" class="btn btn-secondary" id="abbutton">Add</button>
+        <button type="button" class="btn btn-secondary" id="vsbutton">View Schedules</button>
+        <button type="button" class="btn btn-secondary" id="vacbutton">View All Children</button>
+      </div>
+
+    </div>
+
+    {{> addmodal}}
+
+    <!-- The View Schedule -->
+   {{> viewSchedule}}
+{{!-- View Children Modal --}}
+        {{> children}}
+
+    </div>
+{{!-- Retrive Users --}}
+    {{> retrieval}}
+    
+  </div>
+
+  </div>
+
+</body>
