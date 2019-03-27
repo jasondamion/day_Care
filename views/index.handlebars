@@ -1,6 +1,6 @@
-<body>
+
   <div class = "container">
-      <div class="row bg-white">
+        <div class="row bg-white">
 
           <div class="col-3">
             <img src="../../public/assets/Logo.png" width="120%" height="80%">
@@ -14,16 +14,42 @@
 
         <br>
         <br>
+        {{!-- Form needs to be around all inputs including buttons --}}
+        {{!-- "action" is like <a *href*></a> for a "route" but for ajax --}}
+        <form class="form-group form-signin" action="/signin" method="post">
+          <div class = "row">
+            <div class = "col-12 flex">
+              <h1 id = "username_text">Username: </h1>
+              <input type="text" id="signin-username" name="signin-username" placeholder="Username">
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class = "row">
+            <div class = "col-12 flex">
+              <h1 id = "password_text">Password: </h1>
+              <input type="password" id="signin-password" name="signin-password" placeholder="Password">
+            </div>
+          </div>
+
+        <br>
+        <br>
 
         <div class = "row">
-
-         <div class = "col-12 flex">
-
-           <h1 id = "username_text">Username: </h1>
-          <form>
-           <input type="text" id="username" name="username" placeholder="Username">
-         </form>
-         </div>
+          <div class = "col-12 flex">
+            <button type="submit" id="login-btn">Login</button>
+          </div>
+        </div>
+        </form>
+        {{!-- I don't know how to make passport work with only 1 form --}}
+        <form class="form-group form-signin" action="/signup" method="post">
+        <div class = "row">
+          <div class = "col-12 flex">
+            <h1 id = "username_text">Username: </h1>
+            <input type="text" id="signup-username" name="signup-username" placeholder="Username">
+          </div>
         </div>
 
         <br>
@@ -31,20 +57,20 @@
 
         <div class = "row">
           <div class = "col-12 flex">
-           <h1 id = "password_text">Password: </h1>
-           <input type="password" id="password" placeholder="Password">
+            <h1 id = "password_text">Password: </h1>
+            <input type="password" id="signup-password" name="signup-password" placeholder="Password">
           </div>
-      </div>
+        </div>
 
       <br>
       <br>
 
       <div class = "row">
-          <div class = "col-12 flex">
-           <button type="button" id="login">Login</button>
-          </div>
+        <div class = "col-12 flex">
+          <button type="submit" id="signup-btn">Signup</button>
+        </div>
       </div>
-
+      </form>
   </div>
 
   <div class="container1">
@@ -108,5 +134,3 @@
   </div>
 
   </div>
-
-</body>
