@@ -5,18 +5,26 @@
 // Dependencies
 // =============================================================
 var path = require("path");
-
+var Orm = require("../config/Orm")
+var express = require("../../node_modules/express")
+var app = express()
 
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
 
-  // index route loads view.html
-  app.get("/api/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/land.html"));
+  app.post("/child/list", function(req, res) {
+    res.json(Orm.list)
   });
+  app.post("/child/records", function(req,res){
+    res.json(Orm.listRecords)
+  });
+  // Retrieve child info
+  app.post('/child/retrieve/:childName', function (req, res) {
+  res.json(Orm.retrieve(childName));
+  });
+
   
 
 

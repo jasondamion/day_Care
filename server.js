@@ -1,9 +1,7 @@
-require("dotenv").config();
+var dotenv = require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var path = require("path")
-
-// var db = require("./app/models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -24,6 +22,11 @@ app.set("views", path.join(__dirname, "views"));
 
 // Routes
 require("./app/routes/html-routes")(app);
+
+
+var router = require('./app/controller/control');
+app.use('/', router);
+
 
 
 // Starting the server ------------------------------------/

@@ -89,7 +89,11 @@
 
         <button type="button" class="btn btn-secondary" id="abbutton">Add</button>
         <button type="button" class="btn btn-secondary" id="vsbutton">View Schedules</button>
+        <Form action="child/list" method="GET">
         <button type="button" class="btn btn-secondary" id="vacbutton">View All Children</button>
+        </Form>
+        <button type="button" class="btn btn-secondary" id="recbutton">View All Records</button>
+
       </div>
 
     </div>
@@ -105,6 +109,7 @@
 {{!-- Retrive Users --}}
     {{> retrieval}}
     
+    {{> records}}
   </div>
 
   </div>
