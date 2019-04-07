@@ -42,5 +42,4 @@ app.use('/', router);
 module.exports = app;
 
 //How to link handlebar variables to javascript etc. How to get the id of something from the handlebar file and change it
-//How to make the server look at daycare.js
 //How to naviate object so I can select child name etc when retriving user from mysql
