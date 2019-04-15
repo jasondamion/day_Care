@@ -1,6 +1,15 @@
 {
 	"folders": [
 		{
+			"path": "."
+		},
+		{
+			"path": "C:\\Users\\jason\\Desktop\\clicky-game"
+		},
+		{
+			"path": "C:\\Users\\jason\\Desktop\\verify_email_aws"
+		},
+		{
 			"path": "C:\\Users\\jason\\Desktop\\News_Scraper"
 		}
 	]

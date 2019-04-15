@@ -22,10 +22,8 @@ app.set("views", path.join(__dirname, "views"));
 
 // Routes
 require("./app/routes/html-routes")(app);
+require("./app/routes/api-routes")(app);
 
-
-var router = require('./app/controller/control');
-app.use('/', router);
 
 
 

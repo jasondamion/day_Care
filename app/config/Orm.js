@@ -11,7 +11,7 @@ var Orm = {
         sequelize.query("Select * FROM children", { type: sequelize.QueryTypes.SELECT })
             .then(children => {
                 console.log("List of children: \n" + JSON.stringify(children))
-                return JSON.stringify(children)
+                return children
             })
     },
     listRecords: function () {

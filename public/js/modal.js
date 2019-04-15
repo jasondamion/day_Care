@@ -56,6 +56,21 @@ var span = document.getElementsByClassName("close2")[0];
 // When the user clicks on the button, open the modal 
 vacbutton.onclick = function() {
     vacmyModal.style.display = "block";
+    $.getJSON("/child/list", function(data) {
+      // For each one
+      for (var i = 0; i < data.length; i++) {
+        // Display the apropos information on the page
+        console.log(data)
+        $("#addKidsHere").append("<div class='card' style='width: 18rem;'>");
+        $("#addKidsHere").append("<div class='card-body'>")
+        $("#addKidsHere").append("<h5 class = 'card-title' data-id='" + data[i].id + "'>Child Name: " + data[i].child_Name + "<br />"+ "</h5>")
+        $("#addKidsHere").append("<p class = 'card-text'>Guardian Name(s): " + data[i].guardian_Name + "<br/>"+"</p>")
+        $("#addKidsHere").append("<p class = 'card-text'>Contact Number: " + data[i].phone + "<br/>"+"</p>")
+        $("#addKidsHere").append("<p class = 'card-text'>Email: " + data[i].email + "<br/>"+"</p>")
+        $("#addKidsHere").append("<p class = 'card-text'>Date Added: " + data[i].date_added + "<br/>"+"</p>")
+
+      }
+})
 }
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -100,6 +115,24 @@ var span = document.getElementsByClassName("close4")[0];
 // When the user clicks on the button, open the modal 
 recbutton.onclick = function() {
   recmyModal.style.display = "block";
+  $.getJSON("/child/records", function(data) {
+    // For each one
+    for (var i = 0; i < data.length; i++) {
+      // Display the apropos information on the page
+      console.log(data)
+      $("#addRecordsHere").append("<div class='card' style='width: 18rem;'>");
+      $("#addRecordsHere").append("<div class='card-body'>")
+      $("#addRecordsHere").append("<h5 class = 'card-title' data-id='" + data[i].id + "'>Child Name: " + data[i].child_Name + "<br />"+ "</h5>")
+      $("#addRecordsHere").append("<p class = 'card-text'>Guardian Sign In: " + data[i].guardian_Name + "<br/>"+"</p>")
+      $("#addRecordsHere").append("<p class = 'card-text'>Guardian Sign Out: " + data[i].guardian_Name_Out + "<br/>"+"</p>")
+      $("#addRecordsHere").append("<p class = 'card-text'>Time Clocked In: " + data[i].clock_in + "<br/>"+"</p>")
+      $("#addRecordsHere").append("<p class = 'card-text'>Time Clocked Out: " + data[i].clock_out + "<br/>"+"</p>")
+      $("#addRecordsHere").append("<p class = 'card-text'>Date: " + data[i].date_today + "<br/>"+"</p>")
+
+
+
+    }
+})
 }
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -145,5 +178,56 @@ else {
 }
 });
 
+//
+$("#reUID").on("click", function(){
+  var childName = $("#nameVal").val()
+  $.getJSON("/child/retrieve/" + childName, function(data) {
 
-//The username is not coming up and the firebase admin functions arent working
+    // For each one
+    for (var i = 0; i < data.length; i++) {
+      // Display the apropos information on the page
+      console.log(data[0].child_Name)
+      $(".childInfo").append("<div class='card' style='width: 18rem;'>");
+      $(".childInfo").append("<div class='card-body'>")
+      $(".childInfo").append("<h5 class = 'card-title' data-id='" + data[i].id + "'>Child Name: " + data[i].child_Name + "<br />"+ "</h5>")
+      $(".childInfo").append("<p class = 'card-text'>Guardian: " + data[i].guardian_Name + "<br/>"+"</p>")
+      $(".childInfo").append("<p class = 'card-text'>Contact Phone: " + data[i].phone + "<br/>"+"</p>")
+      $(".childInfo").append("<p class = 'card-text'>Email: " + data[i].email + "<br/>"+"</p>")
+      $("childInfo").append("<p class = 'card-text'>Date Added: " + data[i].date_added + "<br/>"+"</p>")
+}
+  })
+})
+//Add Child
+$("#submitAddModal").on("click", function(){
+  var childName = $("#nameValAddModal").val()
+  var guardianName = $("#guardianValAddModal").val()
+  var email = $("#emailValAddModal").val()
+  var phone = $("#phoneValAddModal").val()
+  window.location.href = '/child/add/'+ childName + '/' + guardianName +'/' + email+'/' + phone;
+  alert(childName + " " + guardianName + " " + email + " " + phone + "Child Added")
+})
+
+//Delete Child
+$("#deleteChild").on("click", function(){
+  var childName = $("#nameVal").val()
+  window.location.href = '/child/delete/'+ childName;
+  alert(childName + " deleted.")
+})
+
+//Clock In Child
+$("#clock-in").on("click", function(){
+  var childName = $("#nameVal").val()
+  var guardianName = $("#guardianIn").val()
+  window.location.href = '/child/clock-in/'+ childName + "/" + guardianName;
+  alert(childName + " clocked in.")
+})
+
+//Clock It Child
+$("#clock-out").on("click", function(){
+  var childName = $("#nameVal").val()
+  var guardianName = $("#guardianOut").val()
+  window.location.href = '/child/clock-out/'+ childName + "/" + guardianName;
+  alert(childName + " clocked out.")
+})
+
+
