@@ -166,7 +166,7 @@ login.click(function(event) {
   container1 = $(".container1");
     console.log("Click function works!")
     console.log(username)
-if (username == process.env.username && password === process.env.password){
+if (username == "mdvclifton" && password === "Jesus"){
   
 // Get the container holding the admin page
 
