@@ -12,7 +12,7 @@ var dotenv = require("dotenv").config();
 // console.log(result.parsed)
 
 var sequelize = new Sequelize(process.env.mysqlData, process.env.mysqlUser, process.env.mysqlPass, {
-  host: process.env.HOST,
+  host: process.env.mysqlHost,
   dialect: 'mysql',
 
   pool: {

@@ -1,0 +1,55 @@
+<div class="Navtab">
+    <div class="row bg-white">
+
+        <div class="col-3">
+            <img src="../../public/assets/Logo.png" width="90%" height="80%">
+        </div>
+        <div class="col-6 flex">
+            <button type="button" class="btn btn-secondary" id = "attendNameShow">Attendence by Name</button>
+            <button type="button" class="btn btn-secondary" id = "attendDateShow">Attendence by Date</button>
+            <button type="button" class="btn btn-secondary" id = "goBack">Go Back to Home</button>
+
+        </div>
+        <div class="col-3">
+            <img src="../../public/assets/daycare pic.jpg" width="50%" height="80%" id="dayPic">
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+<div class="attendbyName">
+
+    <div class="row flex">
+        <h2>Enter the child's name: </h2>
+        <br />
+        <input type="text" id="attendName">
+        <br />
+        <button type="submit" id = "attendNameSubmit">Submit</button>
+    </div>
+
+    <div class="row flex" id="attendNameDump">
+
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="attendbyDate">
+
+    <div class="row flex">
+        <h2>Enter the date to search in YYYY/MM/DD:</h2>
+        <br />
+        <h3>Start Date</h3>
+        <input type="text" id="start-date">
+        <br />
+        <h3>End Date</h3>
+        <input type="text" id="end-date">
+        <button type="submit" id = "attendDateSubmit">Submit</button>
+    </div>
+
+    <div class="row flex" id="attendDateDump">
+
+    </div>
+</div>

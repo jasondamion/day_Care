@@ -106,34 +106,13 @@ window.onclick = function(event) {
   }
 }
 
-// Get the modal
-var recmyModal = document.getElementById('recmyModal');
-// Get the button that opens the modal
+// Get the button that links to the page
 var recbutton = document.getElementById("recbutton");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close4")[0];
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, go to reports
 recbutton.onclick = function() {
-  recmyModal.style.display = "block";
-  $.getJSON("/child/records", function(data) {
-    // For each one
-    for (var i = 0; i < data.length; i++) {
-      // Display the apropos information on the page
-      console.log(data)
-      $("#addRecordsHere").append("<div class='card' style='width: 18rem;'>");
-      $("#addRecordsHere").append("<div class='card-body'>")
-      $("#addRecordsHere").append("<h5 class = 'card-title' data-id='" + data[i].id + "'>Child Name: " + data[i].child_Name + "<br />"+ "</h5>")
-      $("#addRecordsHere").append("<p class = 'card-text'>Guardian Sign In: " + data[i].guardian_Name + "<br/>"+"</p>")
-      $("#addRecordsHere").append("<p class = 'card-text'>Guardian Sign Out: " + data[i].guardian_Name_Out + "<br/>"+"</p>")
-      $("#addRecordsHere").append("<p class = 'card-text'>Time Clocked In: " + data[i].clock_in + "<br/>"+"</p>")
-      $("#addRecordsHere").append("<p class = 'card-text'>Time Clocked Out: " + data[i].clock_out + "<br/>"+"</p>")
-      $("#addRecordsHere").append("<p class = 'card-text'>Date: " + data[i].date_today + "<br/>"+"</p>")
-
-
-
-    }
-})
+ window.location.href = "/reports";
 }
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   recmyModal.style.display = "none";
@@ -178,7 +157,7 @@ else {
 }
 });
 
-//
+//Retrieve
 $("#reUID").on("click", function(){
   var childName = $("#nameVal").val()
   $.getJSON("/child/retrieve/" + childName, function(data) {

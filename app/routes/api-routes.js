@@ -82,6 +82,24 @@ app.get('/child/delete/:childName', function(req,res){
   })
 })
 
+//Attendence report by the name
+app.get("/child/report/:childName", function(req,res){
+  sequelize.query("Select * FROM timesheet WHERE child_Name = ? ORDER BY date_today", {replacements: [req.params.childName]}, { type: sequelize.QueryTypes.SELECT })
+          .then(records => {
+              console.log("The Records: \n" + JSON.stringify(records))
+              res.json(records)
+          })
+});
+
+//Attendence report by date
+app.get("/child/report/date/:start/:end", function(req,res){
+  sequelize.query("Select * FROM timesheet WHERE date_today BETWEEN ? AND ? ORDER BY date_today", {replacements: [req.params.start, req.params.end]}, { type: sequelize.QueryTypes.SELECT })
+          .then(records => {
+              console.log("The Records: \n" + JSON.stringify(records))
+              res.json(records)
+          })
+})
+
 
 
 
