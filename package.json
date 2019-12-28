@@ -9,7 +9,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "firebase-admin": "^7.0.0",
-    "handlebars": "^4.1.1",
+    "handlebars": "^4.3.0",
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
     "mysql": "^2.16.0",
